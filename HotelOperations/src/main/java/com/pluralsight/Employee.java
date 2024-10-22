@@ -9,7 +9,7 @@ public class Employee {
     private float hoursWorked;
 
 
-    public Employee(String department, float hoursWorked, double payRate, String name, int employeeID) {
+    public Employee(int employeeID, String name, String department, double payRate, float hoursWorked) {
         this.department = department;
         this.hoursWorked = hoursWorked;
         this.payRate = payRate;
@@ -18,23 +18,23 @@ public class Employee {
     }
 
     public double getTotalPay(){
-        if(hoursWorked > 40){
-            float overTimeHours = hoursWorked - 40;
-            double regularPay = 40 * payRate;
-            double overTimePay = overTimeHours * payRate * 1.5;
-            return regularPay + overTimePay;
-        }
-        else {
-            return this.payRate * this.hoursWorked;
-        }
+        return getRegularPay() + getOvertimePay();
+    }
+
+    public double getRegularPay(){
+        return  getRegularHours() * payRate;
+    }
+
+    public double getOvertimePay() {
+        return getOverTimeHours() * payRate * 1.5;
     }
 
     public float getRegularHours(){
-        return 0;
+        return (hoursWorked > 40) ? 40 : hoursWorked;
     }
 
     public float getOverTimeHours(){
-        return 0;
+        return (hoursWorked > 40) ? hoursWorked - 40 : 0;
     }
 
 }
