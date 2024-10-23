@@ -7,6 +7,7 @@ public class Employee {
     private String department;
     private double payRate;
     private float hoursWorked;
+    private Double punchInTime;
 
 
     public Employee(int employeeID, String name, String department, double payRate, float hoursWorked) {
@@ -15,6 +16,7 @@ public class Employee {
         this.payRate = payRate;
         this.name = name;
         this.employeeID = employeeID;
+        this.punchInTime = null;
     }
 
     public double getTotalPay(){
@@ -37,4 +39,25 @@ public class Employee {
         return (hoursWorked > 40) ? hoursWorked - 40 : 0;
     }
 
+    public void punchTimeCard(double time) {
+        if (punchInTime == null) {
+            // Punching in
+            punchInTime = time;
+            System.out.println(name + " punched in at " + time);
+        } else {
+            // Punching out
+            punchOut(time);
+        }
+    }
+
+    public void punchOut(double time) {
+        if (punchInTime != null) {
+            float workedHours = (float) (time - punchInTime);
+            hoursWorked += workedHours; // Add worked hours to total hours worked
+            System.out.println(name + " punched out at " + time + ", worked " + workedHours + " hours.");
+            punchInTime = null; // Reset punch-in time
+        } else {
+            System.out.println(name + " cannot punch out without punching in first.");
+        }
+    }
 }
