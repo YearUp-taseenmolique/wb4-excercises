@@ -3,7 +3,6 @@ package com.pluralsight;
 import java.util.ArrayList;
 
 public class Hand {
-
     private final ArrayList<Card> cards;
 
     public Hand(){
@@ -14,13 +13,21 @@ public class Hand {
         cards.add(card);
     }
 
+    public void Deal(Deck deck, int numberOfCardsToDeal){
+        for(int i = 0; i < numberOfCardsToDeal ; i++){
+            Deal(deck.deal());
+        }
+    }
+
+
+
     public int getSize(){
         return cards.size();
     }
 
-    public int getValue() throws Exception{
+    public int getValue() throws Exception {
         int handValue = 0;
-        for (Card card:cards){
+        for(Card card:cards){
             card.flip();
             handValue += card.getPointValue();
             card.flip();
@@ -28,11 +35,20 @@ public class Hand {
         return handValue;
     }
 
-    public void displayHand() throws Exception{
-        for (Card card: this.cards){
-            card.displayCard();
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(Card card: this.cards){
+            sb.append(card.toString());
+            sb.append("\n");
         }
-        System.out.println("The total is: " + this.getValue());
+        try {
+            sb.append("The total is:").append(this.getValue());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        sb.append("\n");
+        return sb.toString();
     }
 
 }

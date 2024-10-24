@@ -10,8 +10,9 @@ public class Deck {
     public Deck(){
         cards = new ArrayList<>();
         String[] suits = {"Hearts","Spades","Diamonds","Clubs"};
-        String[] values = {"A","2","3","4","5","6","7","8",
+        String[] values = {"A", "2","3","4","5","6","7","8",
                 "9","10","J","Q","K"};
+
         // these loops create all the cards in the deck
         // and add them to the ArrayList
         for(String suit: suits){
@@ -27,11 +28,11 @@ public class Deck {
     }
 
     public Card deal(){
-        if (cards.size() > 0){
+        if(cards.size() > 0){
             Card card = cards.remove(0);
             return card;
         }
-        else {
+        else{
             return null;
         }
     }
@@ -39,5 +40,6 @@ public class Deck {
     public int getSize(){
         return cards.size();
     }
+
 
 }
