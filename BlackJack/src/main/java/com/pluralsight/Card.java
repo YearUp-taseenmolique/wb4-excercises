@@ -80,5 +80,7 @@ public class Card {
         isFaceUp = !isFaceUp;
     }
 
-
+    public void displayCard(){
+        System.out.println(this.value + " of " + this.suit);
+    }
 }

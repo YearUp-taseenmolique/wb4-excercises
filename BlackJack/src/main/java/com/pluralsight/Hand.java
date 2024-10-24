@@ -14,7 +14,7 @@ public class Hand {
         cards.add(card);
     }
 
-    public int getZie(){
+    public int getSize(){
         return cards.size();
     }
 
@@ -28,5 +28,11 @@ public class Hand {
         return handValue;
     }
 
+    public void displayHand() throws Exception{
+        for (Card card: this.cards){
+            card.displayCard();
+        }
+        System.out.println("The total is: " + this.getValue());
+    }
 
 }
